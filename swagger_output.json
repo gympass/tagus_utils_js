@@ -2,31 +2,62 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "REST API",
-    "description": ""
+    "title": "User Tagus",
+    "description": "Mass management of tests in the staging environment."
   },
   "host": "localhost:3000",
   "basePath": "/",
-  "schemes": [
-    "http"
-  ],
+  "schemes": ["http"],
   "paths": {
-    "/users": {
-      "get": {
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
+    "/user": {
+      "delete": {
+        "description": "Delete User Tagus By Email",
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "email",
             "in": "query",
-            "type": "string"
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted",
+            "body": "User deleted!"
+          }
+        }
+      }
+    },
+    "/user/plan": {
+      "post": {
+        "description": "Create User With Plan",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": "plan",
+            "in": "query",
+            "type": "array",
+            "items":{"type":"string","enum":["Basic", "DiamondPlus"]},
+            "required": "true"
           }
         ],
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Created",
+            "body": "User created!"
           }
         }
       }
