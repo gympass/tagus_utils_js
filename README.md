@@ -38,14 +38,14 @@ The server is running: [tagus_utils](http://localhost:3000/api-doc).
 
 ## Features
 
-- [ ] Cadastro de elegibilidade do usuário
-- [ ] Cadastro de usuário com plano
-- [ ] Cadastro de usuário sem plano
-- [ ] Associa plano ao usuário
-- [ ] Cancela plano do usuário
-- [X] Deleta usuário
-- [ ] Criar booking
-- [ ] Aprovar booking
+- [ ] User eligibility registration
+- [ ] User registration with plan
+- [ ] User registration without plan
+- [ ] Associate plan to user
+- [ ] Cancel user plan
+- [X] Delete user
+- [ ] Create booking
+- [ ] Approve booking
 
 
-## 🚧  Em construção...  🚧
+## 🚧  Under construction...  🚧
