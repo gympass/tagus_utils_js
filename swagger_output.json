@@ -8,10 +8,50 @@
   "host": "localhost:3000",
   "basePath": "/",
   "schemes": ["http"],
+  "tags": [{ "name": "user" }, { "name": "plan" }, { "name": "booking" }],
   "paths": {
     "/user": {
+      "post": {
+        "tags": ["user"],
+        "summary": "Create user Tagus",
+        "description": "A user with random email will be generated",
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "User created!",
+            "body": "User created!"
+          }
+        }
+      }
+    },
+    "/user/plan": {
+      "post": {
+        "tags": ["user"],
+        "summary": "Create user Tagus with plan",
+        "description": "A user with random email will be generated with plan Basic or Diamond+",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "plan",
+            "in": "query",
+            "type": "array",
+            "items": { "type": "string", "enum": ["Basic", "DiamondPlus"] },
+            "required": "true"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "User created!",
+            "body": "User created!"
+          }
+        }
+      }
+    },
+    "/user/delete": {
       "delete": {
-        "description": "Delete User Tagus By Email",
+        "tags": ["user"],
+        "summary": "Delete user Tagus",
+        "description": "Delete user",
         "produces": ["application/json"],
         "parameters": [
           {
@@ -23,15 +63,17 @@
         ],
         "responses": {
           "200": {
-            "description": "Deleted",
+            "description": "User deleted",
             "body": "User deleted!"
           }
         }
       }
     },
-    "/user/plan": {
+    "/plan/user": {
       "post": {
-        "description": "Create User With Plan",
+        "tags": ["plan"],
+        "summary": "Associate plan to user Tagus",
+        "description": "Associate plan Basic or Diamond+ to user",
         "produces": ["application/json"],
         "parameters": [
           {
@@ -41,23 +83,75 @@
             "required": "true"
           },
           {
-            "name": "password",
-            "in": "query",
-            "type": "string",
-            "required": "true"
-          },
-          {
             "name": "plan",
             "in": "query",
             "type": "array",
-            "items":{"type":"string","enum":["Basic", "DiamondPlus"]},
+            "items": { "type": "string", "enum": ["Basic", "DiamondPlus"] },
             "required": "true"
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created",
-            "body": "User created!"
+          "200": {
+            "description": "Plan assigned to user!",
+            "body": "Plan assigned to user!"
+          }
+        }
+      }
+    },
+    "/plan/user/delete": {
+      "delete": {
+        "tags": ["plan"],
+        "summary": "Cancel plan user Tagus",
+        "description": "Cancel plan of user",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Plan caceleted!",
+            "body": "Plan caceleted!"
+          }
+        }
+      }
+    },
+    "/booking": {
+      "post": {
+        "tags": ["booking"],
+        "summary": "Create booking",
+        "description": "Create class and slot for gym EOS",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Booking created!",
+            "body": "Booking created!"
+          }
+        }
+      }
+    },
+    "/booking/approve": {
+      "patch": {
+        "tags": ["booking"],
+        "summary": "Approve booking for user",
+        "description": "Approve booking for user email",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Booking approved!",
+            "body": "Booking approved!"
           }
         }
       }

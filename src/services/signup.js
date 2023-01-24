@@ -1,44 +1,49 @@
 require('dotenv').config()
+const { v4: uuidv4 } = require('uuid');
 const axios = require('axios')
 
-async function generateToken(email_user) {
+const base_url = process.env.SIGNUP_URL
+let uuid = uuidv4()
+const config = {
+    headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        'x-gympass-correlation-id': uuid
+    }
+}
 
-    const url = process.env.SIGNUP_URL + `/generate-token`
-    const config = {
-        headers: {
-            'Content-Type': 'application/json; charset=utf-8'
-        },
-        json: {
+module.exports = {
+    async generateToken(email_user) {
+
+        const url = base_url + `/generate-token`
+
+        let body = {
             "client_id": process.env.CLIENT_ID,
             "country_name": "BR",
             "language": "pt-br",
             "email": email_user
         }
-    }
-    try {
-        const { data } = await axios.post(url, config)
-        return JSON.stringify(data)
-    } catch (error) {
-        console.error(error.message)
-    };
-}
+        try {
+            const { data } = await axios.post(url, body, config)
+            return data.seed
+        } catch (error) {
+            console.log(`Error call url - ${url} Message - ${error}`)
+            throw new Error('Error', error)
+        }
+    },
 
-async function signupMember(email_user, seed, code, name, password, eligibility_id) {
+    async signupMember(email_user, seed, code, eligibility_id) {
 
-    const url = process.env.SIGNUP_URL + `/member`
-    const config = {
-        headers: {
-            'Content-Type': 'application/json; charset=utf-8'
-        },
-        json: {
+        const url = base_url + `/member`
+
+        let body = {
             "client_id": process.env.CLIENT_ID,
             "country_name": "BR",
             "language": "pt-br",
             "email": email_user,
             "seed": seed,
             "token": code,
-            "full_name": name,
-            "password": password,
+            "full_name": process.env.DEFAULT_NAME,
+            "password": process.env.DEFAULT_PASS,
             "legal_docs": [
                 {
                     "doc_type": "TERMS_AND_CONDITIONS",
@@ -48,16 +53,12 @@ async function signupMember(email_user, seed, code, name, password, eligibility_
             ],
             "eligibility_id": eligibility_id
         }
+        try {
+            const { data } = await axios.post(url, body, config)
+            return data.user_id
+        } catch (error) {
+            console.log(`Error call url - ${url} Message - ${error}`)
+            throw new Error('Error', error)
+        }
     }
-    try {
-        const { data } = await axios.post(url, config)
-        return JSON.stringify(data)
-    } catch (error) {
-        console.error(error.message)
-    };
-}
-
-module.exports = {
-    generateToken,
-    signupMember,
 }

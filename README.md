@@ -30,7 +30,7 @@ $ nvm use v14
 ## Running application
 ```sh
 $ yarn install
-and
+then
 $ yarn start
 ```
 The server is running: [tagus_utils](http://localhost:3000/api-doc).
@@ -38,14 +38,13 @@ The server is running: [tagus_utils](http://localhost:3000/api-doc).
 
 ## Features
 
-- [ ] User eligibility registration
-- [ ] User registration with plan
-- [ ] User registration without plan
-- [ ] Associate plan to user
-- [ ] Cancel user plan
+- [X] User registration with plan
+- [X] User registration without plan
+- [X] Associate plan to user
+- [X] Cancel user plan
 - [X] Delete user
-- [ ] Create booking
-- [ ] Approve booking
+- [X] Create booking
+- [X] Approve booking
 
 
 ## 🚧  Under construction...  🚧
