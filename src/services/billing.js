@@ -11,7 +11,6 @@ const config = {
 module.exports = {
     async associatePlan(id_user, plan) {
 
-        var body
         const url = base_url + `/calculate`
         let basic = [{
             "amount": "999",
@@ -37,9 +36,9 @@ module.exports = {
             "eligibility_group_id": "068dbc79-bf78-4c0b-bdd5-212f8c4f6718"
         }]
         if (plan == "Basic") {
-            body = basic
+            var body = basic
         } else {
-            body = diamond
+            var body = diamond
         }
         try {
             const { data } = await axios.post(url, body, config)

@@ -1,5 +1,5 @@
 
-const { getIdUserByEmail } = require("../services/tagus")
+const { getIdUserByEmail, getOrderByUserId } = require("../services/tagus")
 const { associatePlan } = require("../services/billing")
 const { checkoutPlan } = require("../services/checkout")
 const { cancelUserPlanByOrderId } = require("../services/atlantic");

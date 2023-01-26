@@ -17,8 +17,9 @@ module.exports = {
     start_date = date.toISOString();
     date.setMinutes(date.getMinutes() + 31);
     end_date = date.toISOString();
-    const params = new URLSearchParams({ classes_availability: all, version: tagus, gym: process.env.GYM_ID, only_open_booking_window: true, start_date: start_date, end_date: end_date })
-    const url = base_url + `search?${params.toString()}`
+
+    const params = new URLSearchParams(`{ classes_availability: all, version: tagus, gym: ${process.env.GYM_ID}, only_open_booking_window: true, start_date: ${start_date}, end_date: ${end_date} }`)
+    const url = base_url + `search?${params}`
 
     try {
       const { data } = await axios.get(url, config)

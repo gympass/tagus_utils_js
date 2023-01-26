@@ -96,8 +96,8 @@ module.exports = {
     const url = base_url + `/users/${unique_token}/bookings?${params.toString()}`
 
     try {
-      const { data } = await axios.post(url, config)
-      return data[0].booking_number
+      const { data } = await axios.get(url, config)
+      return data.results[0].booking_number
     } catch (error) {
       console.log(`Error call url - ${url} Message - ${error}`)
       throw new Error('Error', error)
@@ -106,16 +106,15 @@ module.exports = {
 
   async approve(booking_number, class_id) {
 
-    const url = base_url + `/gyms/${process.env.GYM_ID}/bookings/${book_number}`
+    const url = base_url + `/gyms/${process.env.GYM_ID}/bookings/${booking_number}`
     let body = {
       "gym_id": process.env.GYM_ID,
       "class_id": class_id,
       "status": 2,
       "reason": "confirm"
     }
-
     try {
-      await axios.post(url, body, config)
+      await axios.patch(url, body, config)
     } catch (error) {
       console.log(`Error call url - ${url} Message - ${error}`)
       throw new Error('Error', error)
