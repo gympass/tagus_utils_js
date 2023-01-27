@@ -28,6 +28,9 @@ $ nvm use v14
 
 
 ## Running application
+
+> As these are end-points that use services in the Staging environment, the Zscaler VPN must be active.
+
 ```sh
 $ yarn install
 then
@@ -46,5 +49,5 @@ The server is running: [tagus_utils](http://localhost:3000/api-doc).
 - [X] Create booking
 - [X] Approve booking
 
-
-## 🚧  Under construction...  🚧
+## Comments
+> The flow of creating a user with a plan and associating a plan with the user will soon be discontinued due to changes in the checkout functionality
