@@ -4,7 +4,9 @@ const axios = require('axios')
 const base_url = process.env.CHECKOUT_URL
 const config = {
     headers: {
-        'Content-Type': 'application/json; charset=utf-8'
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Accept-Encoding': 'identity'
     }
 }
 
@@ -26,6 +28,7 @@ module.exports = {
                 "expiry_year": "2030"
             }
         }
+        console.log(body)
         try {
             await axios.post(url, body, config)
         } catch (error) {

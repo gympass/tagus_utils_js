@@ -5,6 +5,8 @@ const base_url = process.env.HADES_URL
 const config = {
     headers: {
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Accept-Encoding': 'identity',
         'Authorization': process.env.HADES_TOKEN
     }
 }

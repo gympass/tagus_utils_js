@@ -5,7 +5,9 @@ const base_url = process.env.TAGUS_URL;
 
 const config = {
     headers: {
-        'Content-Type': 'application/json; charset=utf-8',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Accept-Encoding': 'identity',
         'Authorization': process.env.TAGUS_TOKEN
     }
 };

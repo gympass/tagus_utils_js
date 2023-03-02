@@ -4,7 +4,9 @@ const axios = require('axios')
 const base_url = process.env.CLASS_SEARCH_URL
 const config = {
   headers: {
-    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'Accept-Encoding': 'identity'
   }
 }
 

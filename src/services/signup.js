@@ -6,7 +6,9 @@ const base_url = process.env.SIGNUP_URL
 let uuid = uuidv4()
 const config = {
     headers: {
-        'Content-Type': 'application/json; charset=utf-8',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Accept-Encoding': 'identity',
         'x-gympass-correlation-id': uuid
     }
 }

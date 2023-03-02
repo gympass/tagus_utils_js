@@ -4,7 +4,9 @@ const axios = require('axios')
 const base_url = process.env.BILLING_CALCULATOR_URL
 const config = {
     headers: {
-        'Content-Type': 'application/json; charset=utf-8'
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Accept-Encoding': 'identity'
     }
 }
 
@@ -16,6 +18,7 @@ module.exports = {
             "amount": "999",
             "currency": "BRL",
             "country": "BR",
+            "free_trial_days": 7,
             "user_id": id_user,
             "plan_id": "450b298b-6e91-4337-9357-e456c3e8515a",
             "offer_plan_id": "2cba1754-c86e-4672-ae7c-dc5f620f5dba",
